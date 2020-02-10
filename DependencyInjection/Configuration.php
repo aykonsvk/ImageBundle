@@ -10,6 +10,7 @@ namespace Gregwar\ImageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 class Configuration implements ConfigurationInterface
 {
@@ -25,7 +26,10 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('cache_dir_mode')->defaultNull()->example('0755')->end()
             ->booleanNode('throw_exception')->defaultFalse()->end()
             ->scalarNode('fallback_image')->defaultNull()->end()
-            ->scalarNode('web_dir')->defaultValue('%kernel.root_dir%/../web')->end()
+            ->scalarNode('web_dir')->defaultValue(
+                Kernel::MAJOR_VERSION === 5
+                    ? '%kernel.project_dir%/../public'
+                    : '%kernel.root_dir%/../web')->end()
             ->end()
             ;
 
