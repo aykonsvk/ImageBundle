@@ -3,6 +3,7 @@
 namespace Gregwar\ImageBundle\Extensions;
 
 use Gregwar\ImageBundle\Services\ImageHandling;
+use Twig\Extension\AbstractExtension;
 
 /**
  * ImageTwig extension.
@@ -10,7 +11,7 @@ use Gregwar\ImageBundle\Services\ImageHandling;
  * @author Gregwar <g.passault@gmail.com>
  * @author bzikarsky <benjamin.zikarsky@perbility.de>
  */
-class ImageTwig extends \Twig_Extension
+class ImageTwig extends AbstractExtension
 {
     /**
      * @var ImageHandling
