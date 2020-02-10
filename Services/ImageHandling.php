@@ -3,9 +3,9 @@
 namespace Gregwar\ImageBundle\Services;
 
 use Gregwar\ImageBundle\ImageHandler;
+use Symfony\Component\Asset\PackageInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -32,7 +32,7 @@ class ImageHandling
     private $container;
 
     /**
-     * @var Packages
+     * @var PackageInterface
      */
     private $assetsPackages;
 
@@ -60,7 +60,7 @@ class ImageHandling
      * @param bool                                 $throwException
      * @param string                               $fallbackImage
      */
-    public function __construct($cacheDirectory, $cacheDirMode, $handlerClass, ContainerInterface $container, Packages $assetsPackages, $fileLocator, $throwException, $fallbackImage)
+    public function __construct($cacheDirectory, $cacheDirMode, $handlerClass, ContainerInterface $container, PackageInterface $assetsPackages, $fileLocator, $throwException, $fallbackImage)
     {
         if (!$fileLocator instanceof FileLocatorInterface && $fileLocator instanceof KernelInterface) {
             throw new \InvalidArgumentException(
